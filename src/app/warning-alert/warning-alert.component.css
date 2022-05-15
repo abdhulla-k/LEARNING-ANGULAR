@@ -1,0 +1,9 @@
+.warning {
+    margin-top: 10px;
+    padding: 18px;
+    text-align: center;
+    background-color: rgb(241, 127, 127);
+    height: 75px;
+    width: 100%;
+    border: 1px solid red;
+}
