@@ -13,7 +13,13 @@ import { Component } from '@angular/core';
 
 })
 export class AppComponent {
-  username: string = ''
+  username: string = '';
+  showSelector: boolean = true;
+  paraName = '';
+  log1 = [];
 
-
+  onClic() {
+    this.showSelector = !this.showSelector;
+    this.log1.push(this.log1.length + 1);
+  }
 }

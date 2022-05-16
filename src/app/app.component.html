@@ -28,6 +28,21 @@
                 (click)="username = ''"
                 >Reset user
             </button>
+
+            <!-- therd assignment -->
+            <hr>
+            <button 
+                class="btn btn-primary"
+                (click)="onClic()">
+                Display details</button>
+            <p *ngIf="showSelector">
+                Secret-password
+            </p>
+            <div 
+            *ngFor="let i of log1"
+            [ngStyle]="{backgroundColor: i % 2 < 1 ? 'blue' : 'green'}">
+                {{i}}
+            </div>
         </div>
     </div>
 </div>
