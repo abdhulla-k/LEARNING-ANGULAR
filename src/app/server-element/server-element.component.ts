@@ -4,6 +4,12 @@ import {
   OnInit,
   OnChanges,
   SimpleChanges,
+  DoCheck,
+  AfterContentInit,
+  AfterContentChecked,
+  AfterViewInit,
+  AfterViewChecked,
+  OnDestroy
 } from '@angular/core';
 
 @Component({
@@ -11,7 +17,15 @@ import {
   templateUrl: './server-element.component.html',
   styleUrls: ['./server-element.component.css']
 })
-export class ServerElementComponent implements OnInit, OnChanges {
+export class ServerElementComponent implements 
+  OnInit,
+  OnChanges,
+  DoCheck,
+  AfterContentInit,
+  AfterContentChecked,
+  AfterViewInit,
+  AfterViewChecked,
+  OnDestroy {
   @Input('srvElement') element: { type: string,name: string,content: string }
   @Input() name: string;
 
@@ -28,4 +42,33 @@ export class ServerElementComponent implements OnInit, OnChanges {
     console.log( "ngOnInit called!");
   }
 
+  ngDoCheck(): void {
+    console.log( "ngDoCheck called!" );
+    // this function will be called during every change detuction run.
+    // eg. value change in a property, trigering events like clicked, a time fiered or an observable was resolved.
+  }
+
+  ngAfterContentInit(): void {
+    console.log( "ngAfterContentInit called!" );
+    // called after content (ng-content) has been projected into view
+  }
+
+  ngAfterContentChecked(): void {
+    console.log( "ngAfterContentChecked called!" );
+    // called every time the project contnent has been checked
+  }
+
+  ngAfterViewInit(): void {
+    console.log( "ngAfterViewInit called!");
+    // called after the component's view ( and chiled view ) has been initialized.
+  }
+
+  ngAfterViewChecked(): void {
+    console.log( "ngAfterViewChecked called!");
+    // called every time the view ( and chiled view ) has been checked.
+  }
+
+  ngOnDestroy(): void {
+    console.log( "ngOnDestroy called!" );
+  }
 }

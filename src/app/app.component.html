@@ -9,6 +9,7 @@
   <hr>
   
   <button class="btn btn-primary" (click)="onChangeFirst()">Chenge First Element</button>
+  <button class="btn btn-danger" (click)="onDestroyFirst()">Destroy First component</button>
   <app-server-element 
     *ngFor="let serverElement of serverElements"
     [srvElement]="serverElement"
