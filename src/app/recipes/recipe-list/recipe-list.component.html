@@ -9,7 +9,8 @@
     <div class="col-xs-12">
         <app-recipe-item 
             *ngFor="let recipe_element of recipes"
-            [inputRecipe]="recipe_element"></app-recipe-item>
+            [inputRecipe]="recipe_element"
+            (recipeSelected)="onRecipeSelected( recipe_element )"></app-recipe-item>
     </div>
 </div>
 
