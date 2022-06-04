@@ -7,7 +7,8 @@ import { AppComponent } from './app.component';
 import { CockpitComponent } from './cockpit/cockpit.component';
 import { ServerElementComponent } from './server-element/server-element.component';
 import { DrectivesStudyComponent } from './drectives-study/drectives-study.component';
-import { BasicHighlightDirective } from './higlights/basic-higlight-directive';
+import { BasicHighlightDirective } from './highlights/basic-higlight-directive';
+import { BetterHighlightDirective } from './highlights/better-highlight.directive';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { BasicHighlightDirective } from './higlights/basic-higlight-directive';
     CockpitComponent,
     ServerElementComponent,
     DrectivesStudyComponent,
-    BasicHighlightDirective
+    BasicHighlightDirective,
+    BetterHighlightDirective
   ],
   imports: [
     BrowserModule,
