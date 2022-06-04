@@ -10,6 +10,7 @@ export class DrectivesStudyComponent implements OnInit {
   oddNumbers: number[] = [ 1, 3, 5 ];
   evenNumbers: number[] = [ 2, 4, 6 ];
   onlyOdd: boolean = false;
+  value: number = 5;
 
   constructor() { }
 
