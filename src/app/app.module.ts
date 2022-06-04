@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { CockpitComponent } from './cockpit/cockpit.component';
 import { ServerElementComponent } from './server-element/server-element.component';
 import { DrectivesStudyComponent } from './drectives-study/drectives-study.component';
+import { BasicHighlightDirective } from './higlights/basic-higlight-directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     CockpitComponent,
     ServerElementComponent,
-    DrectivesStudyComponent
+    DrectivesStudyComponent,
+    BasicHighlightDirective
   ],
   imports: [
     BrowserModule,
