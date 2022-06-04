@@ -17,9 +17,15 @@ export class AppComponent {
   showSelector: boolean = true;
   paraName = '';
   log1 = [];
+  odd: number[] = [];
+  even: number[] = [];
 
   onClic() {
     this.showSelector = !this.showSelector;
     this.log1.push(this.log1.length + 1);
+  }
+
+  onIntervalFired( firedNumber: number ) {
+    ( firedNumber % 2 === 0 ) ? this.even.push( firedNumber ) : this.odd.push( firedNumber );
   }
 }
