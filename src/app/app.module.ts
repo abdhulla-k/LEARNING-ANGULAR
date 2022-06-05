@@ -10,6 +10,8 @@ import { DrectivesStudyComponent } from './drectives-study/drectives-study.compo
 import { BasicHighlightDirective } from './highlights/basic-higlight-directive';
 import { BetterHighlightDirective } from './highlights/better-highlight.directive';
 import { UnlessDirective } from './highlights/unless.directive';
+import { NewAccountComponent } from './new-account/new-account.component';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { UnlessDirective } from './highlights/unless.directive';
     DrectivesStudyComponent,
     BasicHighlightDirective,
     BetterHighlightDirective,
-    UnlessDirective
+    UnlessDirective,
+    NewAccountComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
