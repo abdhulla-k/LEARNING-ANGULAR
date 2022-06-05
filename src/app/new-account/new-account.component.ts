@@ -7,7 +7,7 @@ import { LoggingService } from '../logging.service';
   selector: 'app-new-account',
   templateUrl: './new-account.component.html',
   styleUrls: ['./new-account.component.css'],
-  providers: [ LoggingService ]
+  // providers: [ LoggingService ]
 })
 export class NewAccountComponent {
   // @Output() accountAdded = new EventEmitter<{name: string, status: string}>();
@@ -20,6 +20,6 @@ export class NewAccountComponent {
 
   onCreateAccount(accountName: string, accountStatus: string) {
     this.accountService.addAccount( accountName, accountStatus );
-    this.loggingService.LogToConsole( accountStatus );
+    //this.loggingService.LogToConsole( accountStatus );
   }
 }
