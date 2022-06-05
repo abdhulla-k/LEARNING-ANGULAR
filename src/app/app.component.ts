@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { UserService } from './users.service';
+import { CounterService } from './counter.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,10 @@ import { UserService } from './users.service';
        color: dodgerblue;
      }
   `],
-  providers: [UserService]
+  providers: [
+    UserService,
+    CounterService
+  ]
 
 })
 export class AppComponent {
