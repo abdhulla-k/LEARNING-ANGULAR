@@ -6,8 +6,7 @@ import { ShoppingListService } from './shopping-list.service';
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
-  styleUrls: ['./shopping-list.component.css'],
-  providers: [ ShoppingListService ]
+  styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
   // incredients: Incredient[] = [
@@ -16,14 +15,14 @@ export class ShoppingListComponent implements OnInit {
   // ];
 
   incredients: Incredient[] = [];
-  constructor(  private shoppingListService: ShoppingListService ) {}
+  constructor(  private slService: ShoppingListService ) {}
 
   ngOnInit(): void {
-    this.incredients = this.shoppingListService.getIngredients();
+    this.incredients = this.slService.getIngredients();
+    this.slService.ingredientChanged.subscribe(
+      ( ingredient: Incredient[] ) => {
+        this.incredients = ingredient;
+      }
+    )
   }
-
-  onIngredientAdded( ingredient: Incredient ) {
-    this.shoppingListService.ingredientAdded( ingredient );
-  }
-
 }
