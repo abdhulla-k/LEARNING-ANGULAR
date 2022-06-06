@@ -14,6 +14,13 @@ import { NewAccountComponent } from './new-account/new-account.component';
 import { AccountComponent } from './account/account.component';
 import { AccountService } from './accounts.service';
 import { LoggingService } from './logging.service';
+import { HomeComponent } from './learn-routing/home/home.component';
+import { UsersComponent } from './learn-routing/users/users.component';
+import { ServersComponent } from './learn-routing/servers/servers.component';
+import { UserComponent } from './learn-routing/users/user/user.component';
+import { EditServerComponent } from './learn-routing/servers/edit-server/edit-server.component';
+import { ServerComponent } from './learn-routing/servers/server/server.component';
+import { ServersService } from './learn-routing/servers/servers.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +32,13 @@ import { LoggingService } from './logging.service';
     BetterHighlightDirective,
     UnlessDirective,
     NewAccountComponent,
-    AccountComponent
+    AccountComponent,
+    HomeComponent,
+    UsersComponent,
+    ServersComponent,
+    UserComponent,
+    EditServerComponent,
+    ServerComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +46,8 @@ import { LoggingService } from './logging.service';
   ],
   providers: [
     AccountService,
-    LoggingService
+    LoggingService,
+    ServersService
   ],
   bootstrap: [AppComponent]
 })
