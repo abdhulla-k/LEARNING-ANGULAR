@@ -9,7 +9,7 @@ import { RecipeService } from '../recipe.service';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
-  @Output() recipeWasSelected = new EventEmitter<Recipe>()
+  // @Output() recipeWasSelected = new EventEmitter<Recipe>()
   // recipes: Recipe[] = [
   //   new Recipe( 'A test recipe', 'This is siply a test', 'https://picturetherecipe.com/wp-content/uploads/2020/01/Rogan-Josh-by-PictureTheRecipe-Featured-1-395x500.jpg')
   // ];
@@ -21,8 +21,8 @@ export class RecipeListComponent implements OnInit {
     this.recipes = this.recipeService.getRecipes();
   }
 
-  onRecipeSelected( recipe: Recipe ) {
-    this.recipeWasSelected.emit( recipe );
-  }
+  // onRecipeSelected( recipe: Recipe ) {
+  //   this.recipeWasSelected.emit( recipe );
+  // }
 
 }
