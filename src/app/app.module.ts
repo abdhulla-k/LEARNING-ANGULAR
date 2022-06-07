@@ -22,6 +22,7 @@ import { UserComponent } from './learn-routing/users/user/user.component';
 import { EditServerComponent } from './learn-routing/servers/edit-server/edit-server.component';
 import { ServerComponent } from './learn-routing/servers/server/server.component';
 import { ServersService } from './learn-routing/servers/servers.service';
+import { PageNotFoundComponent } from './learn-routing/page-not-found/page-not-found.component';
 
 const appRouters: Routes = [
   { path: '', component: HomeComponent },
@@ -31,7 +32,9 @@ const appRouters: Routes = [
   { path: 'servers', component: ServersComponent, children: [
     { path: ':id', component: ServerComponent },
     { path: ':id/edit', component: EditServerComponent }
-  ] }
+  ] },
+  { path: 'not-found', component: PageNotFoundComponent },
+  { path: '**', redirectTo: 'not-found', pathMatch: 'full' }
 ]
 
 @NgModule({
@@ -51,6 +54,7 @@ const appRouters: Routes = [
     UserComponent,
     EditServerComponent,
     ServerComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
