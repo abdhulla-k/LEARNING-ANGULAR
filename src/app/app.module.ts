@@ -23,7 +23,7 @@ import { EditServerComponent } from './learn-routing/servers/edit-server/edit-se
 import { ServerComponent } from './learn-routing/servers/server/server.component';
 import { ServersService } from './learn-routing/servers/servers.service';
 import { PageNotFoundComponent } from './learn-routing/page-not-found/page-not-found.component';
-import { AppRoutingModule } from './learn-routing/app-routing-module';
+import { AppRoutingModule } from './app-routing-module';
 import { AuthGuard } from './learn-routing/auth.guard.service';
 import { AuthService } from './learn-routing/auth.service';
 import { CanDeactivateGuard } from './learn-routing/servers/edit-server/can-deactivate-guard.service';
