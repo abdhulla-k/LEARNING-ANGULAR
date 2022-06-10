@@ -74,4 +74,10 @@ export class AppComponent implements OnInit {
 
   onStatusChanged(updateInfo: {id: number, newStatus: string}) {
   }
+
+
+  // learning about forms
+  suggestUserName() {
+    const suggestedName = 'Superuser';
+  }
 }
