@@ -8,8 +8,4 @@ import { Component } from '@angular/core';
 export class AppComponent {
   showComponent: string = 'recipe';
 
-  switchComponent( status: string ) {
-    this.showComponent = status;
-
-  }
 }

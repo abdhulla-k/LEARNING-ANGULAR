@@ -1,8 +1,10 @@
 import { EventEmitter } from "@angular/core";
+import { Subject } from "rxjs";
+
 import { Incredient } from "../shared/incredient.model";
 
 export class ShoppingListService {
-    ingredientChanged = new EventEmitter();
+    ingredientChanged = new Subject();
     private incredients: Incredient[] = [
         new Incredient( 'Apple', 5 ),
         new Incredient( 'Tomate', 10 )
@@ -14,7 +16,7 @@ export class ShoppingListService {
 
     addIngredient( ingredient: Incredient ) {
         this.incredients.push( ingredient );
-        this.ingredientChanged.emit( this.incredients.slice());
+        this.ingredientChanged.next( this.incredients.slice());
     }
 
     addIngredients( ingredients: Incredient[] ) {
@@ -22,6 +24,6 @@ export class ShoppingListService {
         //     this.addIngredient( ingredient );
         // }
         this.incredients.push( ...ingredients );
-        this.ingredientChanged.emit( this.incredients.slice());
+        this.ingredientChanged.next( this.incredients.slice());
     }
 }
