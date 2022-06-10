@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { AccountService } from './accounts.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { AccountService } from './accounts.service';
 export class AppComponent implements OnInit {
   serverElements = [{ type: 'server', name: 'test', content: 'just a test'}];
   accounts: { name: string, status: string }[] = [];
+  @ViewChild('f') signupForm: NgForm; // this is created to get the local reference 'f' from form section
 
   constructor( private accountService: AccountService ) {
 
@@ -77,7 +79,11 @@ export class AppComponent implements OnInit {
 
 
   // learning about forms
+  // suggestUserName() {
+  //   const suggestedName = 'Superuser';
+  // }
+
   suggestUserName() {
-    const suggestedName = 'Superuser';
+    console.log( this.signupForm );
   }
 }
