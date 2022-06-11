@@ -12,6 +12,9 @@ export class AppComponent implements OnInit {
   serverElements = [{ type: 'server', name: 'test', content: 'just a test'}];
   accounts: { name: string, status: string }[] = [];
   @ViewChild('f') signupForm: NgForm; // this is created to get the local reference 'f' from form section
+  defaultUserName = "pet";
+  defaultEmail = "pet@gmail.com";
+  defaultQuestion = "Your first pet?"
 
   constructor( private accountService: AccountService ) {
 
