@@ -101,4 +101,8 @@ export class AppComponent implements OnInit {
       }
     })
   }
+
+  onSubmit() {
+    this.signupForm.reset()
+  }
 }

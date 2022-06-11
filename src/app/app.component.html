@@ -192,7 +192,8 @@
         <button 
           class="btn btn-primary" 
           type="submit"
-          [disabled]="!f.valid">
+          [disabled]="!f.valid"
+          (click)="onSubmit()">
             Submit
         </button>
 
