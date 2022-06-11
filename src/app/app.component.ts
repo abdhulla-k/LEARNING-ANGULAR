@@ -14,13 +14,14 @@ export class AppComponent implements OnInit {
   @ViewChild('f') signupForm: NgForm; // this is created to get the local reference 'f' from form section
   defaultUserName = "pet";
   defaultEmail = "pet@gmail.com";
-  defaultQuestion = "Your first pet?"
+  defaultQuestion = "Your first pet?";
+  suggestedName = 'sample';
   genders: string[] = [
     'male',
     'female',
     'transgender',
     'other'
-  ]
+  ];
 
   constructor( private accountService: AccountService ) {
 
@@ -94,5 +95,10 @@ export class AppComponent implements OnInit {
 
   suggestUserName() {
     console.log( this.signupForm );
+    this.signupForm.form.patchValue({
+      userData: {
+        username: this.suggestedName
+      }
+    })
   }
 }
