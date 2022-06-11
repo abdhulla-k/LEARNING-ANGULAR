@@ -15,6 +15,12 @@ export class AppComponent implements OnInit {
   defaultUserName = "pet";
   defaultEmail = "pet@gmail.com";
   defaultQuestion = "Your first pet?"
+  genders: string[] = [
+    'male',
+    'female',
+    'transgender',
+    'other'
+  ]
 
   constructor( private accountService: AccountService ) {
 
