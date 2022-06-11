@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 import { UserService } from './users.service';
 import { CounterService } from './counter.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +27,13 @@ export class AppComponent {
   log1 = [];
   odd: number[] = [];
   even: number[] = [];
+  @ViewChild('f') userData: NgForm;
+  userChoice = false;
+  userDataSaved = {
+    username: '',
+    email: '',
+    userChoice: ''
+  }
 
   onClic() {
     this.showSelector = !this.showSelector;
@@ -49,4 +57,15 @@ export class AppComponent {
   //   this.activeUsers.push(this.inactiveUsers[id]);
   //   this.inactiveUsers.splice(id, 1);
   // }
+
+  onSubmit() {
+    this.userDataSaved.username = this.userData.value.username;
+    this.userDataSaved.email = this.userData.value.email;
+    this.userDataSaved.userChoice = this.userData.value.modeChoose;
+    console.log( this.userData );
+  }
+
+  printUserData() {
+    this.userChoice = !this.userChoice;
+  }
 }

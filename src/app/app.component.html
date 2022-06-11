@@ -76,5 +76,109 @@
           </div>
         </div>
         <hr>
+
+        <!-- assignment to learn template-driven form -->
+        <div class="row">
+          <form
+            ngSubmit
+            #f="ngForm">
+
+            <!-- <div class="form-group">
+              <label >Username</label>
+              <input 
+                type="text" 
+                class="form-control"  
+                ngModel
+                name="username"
+                required
+                placeholder="pet"
+                #username="ngModel">
+              <p *ngIf="!username.valid && username.touched">please enter a username</p>
+            </div> -->
+
+            <div class="form-group">
+              <label for="">Username</label>
+              <input 
+                type="text" 
+                name="username" 
+                placeholder="username" 
+                class="form-control"
+                ngModel
+                #Username="ngModel">
+            </div>
+
+            <div class="form-group">
+              <label for="emails">Email address</label>
+              <input 
+                type="email" 
+                class="form-control" 
+                id="exampleInputEmail1" 
+                aria-describedby="emailHelp" 
+                placeholder="Enter email"
+                ngModel
+                name="email"
+                email
+                required
+                #email="ngModel">
+                <p *ngIf="!email.valid && email.touched">please enter a valid email</p>
+              <small 
+                id="emailHelp" 
+                *ngIf="!email.touched || email.valid"
+                class="form-text text-muted">
+                  We'll never share your email with anyone else.
+              </small>
+            </div>
+
+            <div class="form-goup">
+              <label for="">Choose mode</label>
+              <select 
+                name="modeChoose" 
+                ngModel
+                required
+                id="" 
+                class="form-control">
+                  <option value="basic">basic</option>
+                  <option value="advanced">advanced</option>
+                  <option value="pro">Pro</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input 
+                type="password" 
+                class="form-control" 
+                id="exampleInputPassword1" 
+                placeholder="Password"
+                ngModel
+                required
+                name="password"
+                #password="ngModel">
+              <p *ngIf="!password.valid && password.touched">please enter a password</p>
+            </div>
+
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+
+            <button
+              type="submit" 
+              class="btn btn-primary" 
+              (click)="onSubmit()">
+                Submit
+            </button>
+
+            <div *ngIf="userChoice">
+              <p>username: {{ userDataSaved.username }}</p>
+              <p>Email: {{ userDataSaved.email }}</p>
+              <p>choice: {{ userDataSaved.userChoice }}</p>
+            </div>
+            <button (click)="printUserData()" class="btn btn-primary">Show Data</button>
+
+          </form>
+        </div>
+        <!-- /assignment to learn template-driven form -->
+        <hr>
     </div>
 </div>
