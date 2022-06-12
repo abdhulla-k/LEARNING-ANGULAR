@@ -141,7 +141,7 @@ export class AppComponent implements OnInit {
    // this function is a  custome requirement or validation function
   forbiddenNames( control: FormControl ):{ [ s: string]: boolean } {
     if( this.forbiddenUsernames.indexOf( control.value ) !== -1 ) {
-      return { 'namveIsForbidden': true };
+      return { 'nameIsForbidden': true };
     }
     return null
   }

@@ -218,9 +218,20 @@
                   id="username"
                   class="form-control"
                   formControlName="Username">
-                  <p *ngIf="!reactiveSignupForm.get('userData.Username').valid && reactiveSignupForm.get('userData.Username').touched">
-                       please enter a username
+
+                  <!-- error message with conditions -->
+                  <p *ngIf="!reactiveSignupForm.get('userData.Username').valid &&
+                      reactiveSignupForm.get('userData.Username').touched">
+                      <span *ngIf="reactiveSignupForm.get('userData.Username').errors['required']">
+                        This field is required
+                      </span>
+
+                      <span *ngIf="reactiveSignupForm.get('userData.Username').errors['nameIsForbidden']">
+                        This user name is invalid! try an another one
+                      </span>
                   </p>
+                  <!-- /error message with conditions -->
+                  
               </div>
               <!-- /username input -->
   
