@@ -132,6 +132,16 @@ export class AppComponent implements OnInit {
   // reactive form's functions below
   onSubmitReactive() {
     console.log( this.reactiveSignupForm );
+    this.reactiveSignupForm.setValue(
+      {
+        'userData': {
+          'Username': '',
+          'email': ''
+        },
+        'gender': '',
+        'hobbies': []
+      }
+    )
   }
 
   onAddHobby() {
