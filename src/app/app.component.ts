@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { AccountService } from './accounts.service';
 
 @Component({
@@ -39,7 +39,8 @@ export class AppComponent implements OnInit {
           'Username': new FormControl( null, Validators.required ),
           'email': new FormControl( null, [ Validators.required, Validators.email ] )
         }),
-        'gender': new FormControl( 'male', Validators.required )
+        'gender': new FormControl( 'male', Validators.required ),
+        'hobbies': new FormArray([])
       })
   }
 
@@ -118,7 +119,21 @@ export class AppComponent implements OnInit {
     this.signupForm.reset()
   }
 
+  // reactive form's functions below
   onSubmitReactive() {
     console.log( this.reactiveSignupForm );
+  }
+
+  onAddHobby() {
+    // It will add a new object of form control to form array
+    const control = new FormControl( null, Validators.required );
+    (<FormArray>this.reactiveSignupForm.get( 'hobbies' )).push(control)
+  }
+
+  getControls() {
+    // this will get or get access all controls or all hobbies user added to array
+    // return (<FormArray>this.reactiveSignupForm.get('hobbies')).controls;
+    // another method 
+    return ( this.reactiveSignupForm.get('hobbies') as FormArray ).controls;
   }
 }
