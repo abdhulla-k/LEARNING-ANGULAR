@@ -35,8 +35,10 @@ export class AppComponent implements OnInit {
 
       // reactive form section below
       this.reactiveSignupForm = new FormGroup({
-        'Username': new FormControl( null, Validators.required ),
-        'email': new FormControl( null, [ Validators.required, Validators.email ] ),
+        'userData': new FormGroup({  // nested form
+          'Username': new FormControl( null, Validators.required ),
+          'email': new FormControl( null, [ Validators.required, Validators.email ] )
+        }),
         'gender': new FormControl( 'male', Validators.required )
       })
   }

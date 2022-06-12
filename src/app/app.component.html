@@ -207,34 +207,40 @@
           <h2 style="text-align: center;">Reactive Form</h2>
           <form [formGroup]="reactiveSignupForm" (ngSubmit)="onSubmitReactive()">
 
-            <!-- username input -->
-            <div class="form-group">
-              <label for="username">Username</label>
-              <input
-                type="text"
-                id="username"
-                class="form-control"
-                formControlName="Username">
-                <p *ngIf="!reactiveSignupForm.get('Username').valid && reactiveSignupForm.get('Username').touched">
-                     please enter a username
-                </p>
-            </div>
-            <!-- /username input -->
+            <!-- nexted form : userData -->
+            <div formGroupName="userData">
 
-            <!-- email input -->
-            <div class="form-group">
-              <label for="email">email</label>
-              <input
-                type="text"
-                id="email"
-                class="form-control"
-                formControlName="email">
-                <span 
-                  *ngIf="reactiveSignupForm.get('email').valid && reactiveSignupForm.get('email').touched">
-                      Please enter valid email!
-                </span>
+                <!-- username input -->
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input
+                  type="text"
+                  id="username"
+                  class="form-control"
+                  formControlName="Username">
+                  <p *ngIf="!reactiveSignupForm.get('userData.Username').valid && reactiveSignupForm.get('userData.Username').touched">
+                       please enter a username
+                  </p>
+              </div>
+              <!-- /username input -->
+  
+              <!-- email input -->
+              <div class="form-group">
+                <label for="email">email</label>
+                <input
+                  type="text"
+                  id="email"
+                  class="form-control"
+                  formControlName="email">
+                  <span 
+                    *ngIf="!reactiveSignupForm.get('userData.email').valid && reactiveSignupForm.get('userData.email').touched">
+                        Please enter valid email!
+                  </span>
+              </div>
+              <!-- /email input -->
+
             </div>
-            <!-- /email input -->
+            <!-- /nexted form : userData -->
 
             <!-- gender selection radio button -->
             <div class="radio" *ngFor="let gender of genders">
