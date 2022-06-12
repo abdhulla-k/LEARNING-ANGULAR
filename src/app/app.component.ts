@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { AccountService } from './accounts.service';
 
 @Component({
@@ -35,9 +35,9 @@ export class AppComponent implements OnInit {
 
       // reactive form section below
       this.reactiveSignupForm = new FormGroup({
-        'Username': new FormControl( null ),
-        'email': new FormControl( null ),
-        'gender': new FormControl( 'male' )
+        'Username': new FormControl( null, Validators.required ),
+        'email': new FormControl( null, [ Validators.required, Validators.email ] ),
+        'gender': new FormControl( 'male', Validators.required )
       })
   }
 
