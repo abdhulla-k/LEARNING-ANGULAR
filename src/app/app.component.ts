@@ -44,6 +44,14 @@ export class AppComponent implements OnInit {
         'gender': new FormControl( 'male', Validators.required ),
         'hobbies': new FormArray([])
       })
+
+      // valueChanges and statusChanges are observables
+      this.reactiveSignupForm.valueChanges.subscribe(
+        (value) => console.log( value )
+      )
+      this.reactiveSignupForm.get( 'email' ).statusChanges.subscribe(
+        ( value ) => console.log( value )
+      )
   }
 
   onServerAdded( serverData: { serverName: string, serverContent: string }) {
