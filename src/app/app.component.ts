@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { AccountService } from './accounts.service';
 
 @Component({
@@ -38,7 +39,7 @@ export class AppComponent implements OnInit {
       this.reactiveSignupForm = new FormGroup({
         'userData': new FormGroup({  // nested form
           'Username': new FormControl( null, [ Validators.required, this.forbiddenNames.bind( this ) ] ),
-          'email': new FormControl( null, [ Validators.required, Validators.email ] )
+          'email': new FormControl( null, [ Validators.required, Validators.email ], this.forbiddenEmail )
         }),
         'gender': new FormControl( 'male', Validators.required ),
         'hobbies': new FormArray([])
@@ -144,5 +145,18 @@ export class AppComponent implements OnInit {
       return { 'nameIsForbidden': true };
     }
     return null
+  }
+
+  forbiddenEmail( control: FormControl ): Promise<any> | Observable<any> {
+    const promise = new Promise<any>(( resolve, reject ) => {
+      setTimeout(() => {
+        if( control.value === 'test@gmail.com' ) {
+          resolve({ 'emailIsForbidden': true });
+        } else {
+          resolve( null );
+        }
+      }, 1500 );
+    })
+    return promise
   }
 }
