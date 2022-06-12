@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { AccountService } from './accounts.service';
 
 @Component({
@@ -23,12 +23,22 @@ export class AppComponent implements OnInit {
     'other'
   ];
 
+  // reactive form properties below
+  reactiveSignupForm: FormGroup;
+
   constructor( private accountService: AccountService ) {
 
   }
 
   ngOnInit(): void {
       this.accounts = this.accountService.accounts;
+
+      // reactive form section below
+      this.reactiveSignupForm = new FormGroup({
+        'Username': new FormControl( null ),
+        'email': new FormControl( null ),
+        'gender': new FormControl( 'male' )
+      })
   }
 
   onServerAdded( serverData: { serverName: string, serverContent: string }) {
@@ -104,5 +114,9 @@ export class AppComponent implements OnInit {
 
   onSubmit() {
     this.signupForm.reset()
+  }
+
+  onSubmitReactive() {
+    console.log( this.reactiveSignupForm );
   }
 }
