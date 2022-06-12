@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
 
   // reactive form properties below
   reactiveSignupForm: FormGroup;
+  forbiddenUsernames = [ 'text', 'user' ];
 
   constructor( private accountService: AccountService ) {
 
@@ -36,7 +37,7 @@ export class AppComponent implements OnInit {
       // reactive form section below
       this.reactiveSignupForm = new FormGroup({
         'userData': new FormGroup({  // nested form
-          'Username': new FormControl( null, Validators.required ),
+          'Username': new FormControl( null, [ Validators.required, this.forbiddenNames.bind( this ) ] ),
           'email': new FormControl( null, [ Validators.required, Validators.email ] )
         }),
         'gender': new FormControl( 'male', Validators.required ),
@@ -135,5 +136,13 @@ export class AppComponent implements OnInit {
     // return (<FormArray>this.reactiveSignupForm.get('hobbies')).controls;
     // another method 
     return ( this.reactiveSignupForm.get('hobbies') as FormArray ).controls;
+  }
+
+   // this function is a  custome requirement or validation function
+  forbiddenNames( control: FormControl ):{ [ s: string]: boolean } {
+    if( this.forbiddenUsernames.indexOf( control.value ) !== -1 ) {
+      return { 'namveIsForbidden': true };
+    }
+    return null
   }
 }
