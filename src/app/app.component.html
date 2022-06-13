@@ -180,5 +180,61 @@
         </div>
         <!-- /assignment to learn template-driven form -->
         <hr>
+
+        <!-- assignment to learn reactive form -->
+        <div>
+          <h4 style="text-align: center;">Reactive form</h4>
+          <form 
+            [formGroup]="signupForm" 
+            (ngSubmit)="onSubmitReactive()">
+
+            <!-- project name -->
+            <div class="form-group">
+              <label for="">Project name</label>
+              <input 
+                type="text"
+                class="form-control"
+                formControlName="projectName">
+                <p *ngIf="!signupForm.controls['projectName'].valid">
+                  <span *ngIf="signupForm.controls['projectName'].errors['forbiddenProjectName']">
+                    This is an in valid name! try another one
+                  </span>
+                </p>
+            </div>
+            <!-- /project name -->
+
+            <!-- email -->
+            <div class="form-group">
+              <label for="mail">Email</label>
+              <input 
+                type="email"
+                class="form-control"
+                formControlName="emailReactive">
+            </div>
+            <!-- /email -->
+
+            <!-- type dropdown -->
+            <div class="form-group">
+              <label for="">Type</label>
+              <select 
+                class="form-control"
+                formControlName="typeProject">
+                <option value="Stabele">Stabele</option>
+                <option value="Critical">Critical</option>
+                <option value="Finished">Finished</option>
+              </select>
+            </div>
+            <!-- type dropdown -->
+
+            <button 
+              type="submit"
+              class="btn btn-primary">
+                Submit
+            </button>
+
+          </form>
+        </div>
+        <!-- /assignment to learn reactive form -->
+        <hr>
     </div>
 </div>

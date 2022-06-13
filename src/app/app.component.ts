@@ -1,8 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { UserService } from './users.service';
 import { CounterService } from './counter.service';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +20,7 @@ import { NgForm } from '@angular/forms';
   ]
 
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   username: string = '';
   showSelector: boolean = true;
   paraName = '';
@@ -33,6 +33,17 @@ export class AppComponent {
     username: '',
     email: '',
     userChoice: ''
+  }
+
+  // reactive form assignment
+  signupForm : FormGroup;
+
+  ngOnInit(): void {
+    this.signupForm = new FormGroup({
+      'projectName' : new FormControl( 'just a name', [ Validators.required, this.forbiddenProject] ),
+      'emailReactive': new FormControl( 'test@gmail.com', [ Validators.required, Validators.email ] ),
+      'typeProject': new FormControl( null, )
+    })
   }
 
   onClic() {
@@ -67,5 +78,17 @@ export class AppComponent {
 
   printUserData() {
     this.userChoice = !this.userChoice;
+  }
+
+  // functions of reactive form
+  onSubmitReactive() {
+    console.log( this.signupForm );
+  }
+
+  forbiddenProject( control: FormControl ): {[ s: string] : boolean} {
+    if( control.value === 'test' ) {
+      return { 'forbiddenProjectName' : true };
+    }
+    return null
   }
 }
