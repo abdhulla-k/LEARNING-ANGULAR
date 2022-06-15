@@ -1,39 +1,59 @@
 <div class="row">
     <div class="col-xs-12">
-        <form>
+        <form 
+            (ngSubmit)="onAddItem(f)"
+            #f="ngForm">
+
+            <!-- input data -->
             <div class="row">
+                <!-- name field -->
                 <div class="col-sm-5 form-group">
                     <label for="name">Name</label>
                     <input 
                         type="text" 
                         id="name" 
                         class="form-control"
-                        #nameInput>
+                        name="name"
+                        ngModel
+                        required>
                 </div>
+                <!-- /name field -->
+
+                <!-- amount field -->
                 <div class="col-sm-2 form-group">
                     <label for="amount">Amount</label>
                     <input 
                         type="number" 
                         id="amount" 
                         class="form-control"
-                        #amountInput>
+                        name="amount"
+                        ngModel
+                        required>
                 </div>
+                <!-- /amount field -->
             </div>
+            <!-- input data -->
+
+            <!-- buttons  -->
             <div>
                 <button 
                     class="btn btn-success" 
+                    [disabled]="!f.valid"
                     type="submit"
-                    (click)="onAddItem()"
                 >Add</button>
+
                 <button 
                     class="btn btn-danger" 
                     type="button"
                 >Delete</button>
+
                 <button 
                     class="btn btn-primary" 
                     type="button"
                 >Clear</button>
+
             </div>
+            <!-- buttons -->
         </form>
     </div>
 </div>
