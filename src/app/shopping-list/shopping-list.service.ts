@@ -5,6 +5,7 @@ import { Incredient } from "../shared/incredient.model";
 
 export class ShoppingListService {
     ingredientChanged = new Subject();
+    startedEditing = new Subject<number>();
     private incredients: Incredient[] = [
         new Incredient( 'Apple', 5 ),
         new Incredient( 'Tomate', 10 )
@@ -25,5 +26,14 @@ export class ShoppingListService {
         // }
         this.incredients.push( ...ingredients );
         this.ingredientChanged.next( this.incredients.slice());
+    }
+
+    getIngredient( index: number ) {
+        return this.incredients[index]
+    }
+
+    updateIngredient( index: number, ingredient: Incredient ) {
+        this.incredients[index] = ingredient;
+        this.ingredientChanged.next( this.incredients.slice() );
     }
 }

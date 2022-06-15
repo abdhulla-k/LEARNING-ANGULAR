@@ -1,9 +1,12 @@
 import { 
   Component,
+  OnDestroy,
   OnInit,
+  ViewChild,
 
 } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 import { Incredient } from 'src/app/shared/incredient.model';
 import { ShoppingListService } from '../shopping-list.service';
@@ -13,7 +16,12 @@ import { ShoppingListService } from '../shopping-list.service';
   templateUrl: './shopping-edit.component.html',
   styleUrls: ['./shopping-edit.component.css']
 })
-export class ShoppingEditComponent implements OnInit {
+export class ShoppingEditComponent implements OnInit, OnDestroy {
+  @ViewChild('f') slForm: NgForm;
+  subsCription: Subscription;
+  editMode = false;
+  editedItemIndex: number;
+  editedItem: Incredient;
   // @ViewChild( 'nameInput' ) nameInputRef: ElementRef;
   // @ViewChild( 'amountInput' ) amountInputRef: ElementRef;
   // @Output() ingredientAdded = new EventEmitter<Incredient>();
@@ -21,6 +29,17 @@ export class ShoppingEditComponent implements OnInit {
   constructor( private slService: ShoppingListService ) { }
 
   ngOnInit(): void {
+    this.subsCription = this.slService.startedEditing.subscribe(
+      ( index: number ) => {
+        this.editMode = true;
+        this.editedItemIndex = index;
+        this.editedItem = this.slService.getIngredient( index );
+        this.slForm.setValue({
+          name: this.editedItem.name,
+          amount: this.editedItem.amount
+        })
+      }
+    );
   }
 
   // onAddItem() {
@@ -31,10 +50,22 @@ export class ShoppingEditComponent implements OnInit {
   //   this.slService.addIngredient( newIngredient );
   // }
 
-  onAddItem( form: NgForm ) {
+  onSubmit( form: NgForm ) {
     const value = form.value;
     const newIngredient = new Incredient( value.name, value.amount );
-    this.slService.addIngredient( newIngredient );
+
+    if( this.editMode) {
+      this.slService.updateIngredient( this.editedItemIndex, newIngredient );
+      this.editMode = false;
+      form.reset()
+
+    } else {
+      this.slService.addIngredient( newIngredient );
+    }
+  }
+
+  ngOnDestroy(): void {
+      this.subsCription.unsubscribe();
   }
 
 }

@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-xs-12">
         <form 
-            (ngSubmit)="onAddItem(f)"
+            (ngSubmit)="onSubmit(f)"
             #f="ngForm">
 
             <!-- input data -->
@@ -40,7 +40,7 @@
                     class="btn btn-success" 
                     [disabled]="!f.valid"
                     type="submit"
-                >Add</button>
+                >{{ editMode ? 'Update' : 'Add' }}</button>
 
                 <button 
                     class="btn btn-danger" 
