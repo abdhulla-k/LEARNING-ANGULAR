@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { AccountService } from './accounts.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -58,7 +59,11 @@ export class AppComponent implements OnInit {
   reactiveSignupForm: FormGroup;
   forbiddenUsernames = [ 'text', 'user' ];
 
-  constructor( private accountService: AccountService ) {
+  // http
+  loadedPosts = [];
+
+  constructor( private accountService: AccountService,
+               private http: HttpClient ) {
 
   }
 
@@ -226,5 +231,27 @@ export class AppComponent implements OnInit {
         started: new Date( 25, 11, 2000 )
       }
     )
+  }
+
+  // learning about http
+
+  onCreatePost(postData: { title: string; content: string }) {
+    // Send Http request
+    this.http
+      .post(
+        'https://ng-complete-guide-c56d3.firebaseio.com/posts.json',
+        postData
+      )
+      .subscribe(responseData => {
+        console.log(responseData);
+      });
+  }
+
+  onFetchPosts() {
+    // Send Http request
+  }
+
+  onClearPosts() {
+    // Send Http request
   }
 }
