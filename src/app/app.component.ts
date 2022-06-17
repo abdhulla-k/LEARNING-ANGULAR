@@ -52,6 +52,8 @@ export class AppComponent implements OnInit {
     }
   ];
 
+  filteredStatus = '';
+
   // reactive form properties below
   reactiveSignupForm: FormGroup;
   forbiddenUsernames = [ 'text', 'user' ];

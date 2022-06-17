@@ -28,6 +28,7 @@ import { AuthGuard } from './learn-routing/auth.guard.service';
 import { AuthService } from './learn-routing/auth.service';
 import { CanDeactivateGuard } from './learn-routing/servers/edit-server/can-deactivate-guard.service';
 import { ShortenPipe } from './shorten.pipe';
+import { FilterPipe } from './filter.pipe';
 
 
 
@@ -49,7 +50,8 @@ import { ShortenPipe } from './shorten.pipe';
     EditServerComponent,
     ServerComponent,
     PageNotFoundComponent,
-    ShortenPipe
+    ShortenPipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
