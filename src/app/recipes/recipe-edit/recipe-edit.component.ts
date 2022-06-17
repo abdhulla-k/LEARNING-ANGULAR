@@ -41,7 +41,7 @@ export class RecipeEditComponent implements OnInit {
       recipeName = recipe.name;
       recipeImagePath = recipe.imagePath;
       recipeDesctiption = recipe.description;
-      if( 'ingredients' ) {
+      if( 'ingredient' ) {
         for( let ingredient of recipe.ingredient ) {
           recipeIngredients.push(
             new FormGroup({
@@ -60,12 +60,12 @@ export class RecipeEditComponent implements OnInit {
       'name': new FormControl( recipeName, Validators.required ),
       'imagePath': new FormControl( recipeImagePath, Validators.required ),
       'description': new FormControl( recipeDesctiption, Validators.required ),
-      'ingredients': recipeIngredients
+      'ingredient': recipeIngredients
     })
   }
 
   getControls() {
-    return ( this.recipeForm.get('ingredients') as FormArray ).controls
+    return ( this.recipeForm.get('ingredient') as FormArray ).controls
   }
 
   onSubmit() {
@@ -84,7 +84,7 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onAddIncredient() {
-    ( this.recipeForm.get( 'ingredients' ) as FormArray ).push(
+    ( this.recipeForm.get( 'ingredient' ) as FormArray ).push(
       new FormGroup({
         'name': new FormControl( null, Validators.required ),
         'amount': new FormControl( null, Validators.required )
