@@ -24,6 +24,34 @@ export class AppComponent implements OnInit {
     'other'
   ];
 
+  // related to pipe
+  servers = [
+    {
+      instanceType: 'medium',
+      name: 'Production Server',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    },
+    {
+      instanceType: 'large',
+      name: 'User Database',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    },
+    {
+      instanceType: 'small',
+      name: 'Development Server',
+      status: 'offline',
+      started: new Date(15, 1, 2017)
+    },
+    {
+      instanceType: 'small',
+      name: 'Testing Environment Server',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    }
+  ];
+
   // reactive form properties below
   reactiveSignupForm: FormGroup;
   forbiddenUsernames = [ 'text', 'user' ];
@@ -176,5 +204,14 @@ export class AppComponent implements OnInit {
       }, 1500 );
     })
     return promise
+  }
+
+  // related to pipe
+  getStatusClasses(server: {instanceType: string, name: string, status: string, started: Date}) {
+    return {
+      'list-group-item-success': server.status === 'stable',
+      'list-group-item-warning': server.status === 'offline',
+      'list-group-item-danger': server.status === 'critical'
+    };
   }
 }
