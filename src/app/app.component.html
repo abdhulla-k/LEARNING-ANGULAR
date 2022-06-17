@@ -322,7 +322,7 @@
             {{ server.status }}
           </span>
           <strong>
-            {{ server.name }}
+            {{ server.name | shorten }}
           </strong> | {{ server.instanceType | uppercase }} |
              {{ server.started | date: 'medium' | uppercase }}
         </li>
