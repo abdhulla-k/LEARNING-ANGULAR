@@ -216,4 +216,15 @@ export class AppComponent implements OnInit {
       'list-group-item-danger': server.status === 'critical'
     };
   }
+
+  onAddServer() {
+    this.servers.push(
+      {
+        instanceType: 'small',
+        name: 'Test server',
+        status: 'stable',
+        started: new Date( 25, 11, 2000 )
+      }
+    )
+  }
 }
