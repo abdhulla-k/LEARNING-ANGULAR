@@ -323,7 +323,8 @@
           </span>
           <strong>
             {{ server.name }}
-          </strong> | {{ server.instanceType | uppercase }} | {{ server.started | date }}
+          </strong> | {{ server.instanceType | uppercase }} |
+             {{ server.started | date: 'medium' }}
         </li>
       </ul>
     </div>
