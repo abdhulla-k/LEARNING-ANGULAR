@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { AccountService } from './accounts.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -87,6 +87,8 @@ export class AppComponent implements OnInit {
       this.reactiveSignupForm.get( 'email' ).statusChanges.subscribe(
         ( value ) => console.log( value )
       )
+
+      this.onFetchPosts()
   }
 
   onServerAdded( serverData: { serverName: string, serverContent: string }) {
@@ -249,6 +251,21 @@ export class AppComponent implements OnInit {
 
   onFetchPosts() {
     // Send Http request
+    this.http.get( 'https://ng-complete-guide-d7956-default-rtdb.firebaseio.com/posts.json' )
+       .pipe(
+          map(responseData => {
+            const postsArray = [];
+            for( const key in responseData ) {
+              if( responseData.hasOwnProperty( key )) {
+                postsArray.push( { ...responseData[key], id: key } )
+              }
+            }
+            return postsArray;
+          })
+       )
+       .subscribe( response => {
+        console.log( response )
+       })
   }
 
   onClearPosts() {
