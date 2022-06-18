@@ -417,6 +417,12 @@
         <h1>An Error Occurred!</h1>
         <p>{{ error.error.error }}</p>
         <p>{{ error.message }}</p>
+        <button 
+          type="button"
+          class="btn btn-danger"
+          (click)="resetError()">
+          Okay
+        </button>
       </div>
       <ul 
         class="list-group"
