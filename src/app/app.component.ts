@@ -65,7 +65,8 @@ export class AppComponent implements OnInit {
   // http
   loadedPosts: Post[] = [];
   isFetching = false;
-  @ViewChild( 'postForm' ) postForm: NgForm
+  @ViewChild( 'postForm' ) postForm: NgForm;
+  error = null;
 
   constructor( private accountService: AccountService,
                private http: HttpClient,
@@ -80,6 +81,10 @@ export class AppComponent implements OnInit {
         (data) => {
           this.loadedPosts = data;
           this.isFetching = false
+        },
+        error => {
+          this.error = error;
+          console.log(error)
         }
       )
 
@@ -260,6 +265,9 @@ export class AppComponent implements OnInit {
     this.postsService.fetchPosts().subscribe( posts => {
       this.loadedPosts = posts
       this.isFetching = false;
+    },
+    error => {
+      this.error = error;
     });
   }
 

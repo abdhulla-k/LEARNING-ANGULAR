@@ -410,7 +410,14 @@
   <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
       <p *ngIf="loadedPosts.length < 1 && !isFetching">No posts available!</p>
-      <p *ngIf="isFetching">loading...</p>
+      <p *ngIf="isFetching && !error">loading...</p>
+      <div 
+        class="alert alert-danger"
+        *ngIf="error">
+        <h1>An Error Occurred!</h1>
+        <p>{{ error.error.error }}</p>
+        <p>{{ error.message }}</p>
+      </div>
       <ul 
         class="list-group"
         *ngIf="loadedPosts.length >= 1 && !isFetching">
