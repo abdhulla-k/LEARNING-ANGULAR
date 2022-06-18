@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { AccountService } from './accounts.service';
 import { Post } from './post.model';
+import { PostsService } from './posts.service';
 
 @Component({
   selector: 'app-root',
@@ -64,15 +65,18 @@ export class AppComponent implements OnInit {
   // http
   loadedPosts: Post[] = [];
   isFetching = false;
+  @ViewChild( 'postForm' ) postForm: NgForm
 
   constructor( private accountService: AccountService,
-               private http: HttpClient ) {
+               private http: HttpClient,
+               private postsService: PostsService ) {
 
   }
 
   ngOnInit(): void {
       this.accounts = this.accountService.accounts;
-      this.onFetchPosts()
+      this.isFetching = true
+      this.onFetchPosts();
 
       // reactive form section below
       this.reactiveSignupForm = new FormGroup({
@@ -241,36 +245,17 @@ export class AppComponent implements OnInit {
 
   onCreatePost( postData: Post ) {
     // Send Http request
-    this.http
-      .post<{ name: string }>(
-        'https://ng-complete-guide-d7956-default-rtdb.firebaseio.com/posts.json',
-        postData
-      )
-      .subscribe(responseData => {
-        console.log(responseData);
-      });
+    this.postsService.createAndSavePost( postData.title, postData.content );
+    this.postForm.reset()
   }
 
   onFetchPosts() {
     // Send Http request
     this.isFetching = true;
-    this.http.get<{ [id: string]: Post }>( 'https://ng-complete-guide-d7956-default-rtdb.firebaseio.com/posts.json' )
-       .pipe(
-          map(( responseData : { [id: string]: Post }) => {
-            const postsArray: Post[] = [];
-            for( const key in responseData ) {
-              if( responseData.hasOwnProperty( key )) {
-                postsArray.push( { ...responseData[key], id: key } )
-              }
-            }
-            return postsArray;
-          })
-       )
-       .subscribe( response => {
-        this.isFetching = false;
-        console.log( response )
-        this.loadedPosts = response
-       })
+    this.postsService.fetchPosts().subscribe( posts => {
+      this.loadedPosts = posts
+      this.isFetching = false;
+    });
   }
 
   onClearPosts() {
