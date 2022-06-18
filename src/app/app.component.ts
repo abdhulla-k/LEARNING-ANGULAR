@@ -239,7 +239,7 @@ export class AppComponent implements OnInit {
     // Send Http request
     this.http
       .post(
-        'https://ng-complete-guide-c56d3.firebaseio.com/posts.json',
+        'https://ng-complete-guide-d7956-default-rtdb.firebaseio.com/posts.json',
         postData
       )
       .subscribe(responseData => {
