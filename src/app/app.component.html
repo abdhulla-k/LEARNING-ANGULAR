@@ -413,7 +413,7 @@
       <p *ngIf="isFetching">loading...</p>
       <ul 
         class="list-group"
-        *ngIf="loadedPosts.length > 1 && !isFetching">
+        *ngIf="loadedPosts.length >= 1 && !isFetching">
         <li 
           class="list-group-item"
           *ngFor="let post of loadedPosts">

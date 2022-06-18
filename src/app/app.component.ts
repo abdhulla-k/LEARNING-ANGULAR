@@ -76,7 +76,12 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
       this.accounts = this.accountService.accounts;
       this.isFetching = true
-      this.onFetchPosts();
+      this.postsService.fetchPosts().subscribe(
+        (data) => {
+          this.loadedPosts = data;
+          this.isFetching = false
+        }
+      )
 
       // reactive form section below
       this.reactiveSignupForm = new FormGroup({
@@ -259,6 +264,10 @@ export class AppComponent implements OnInit {
   }
 
   onClearPosts() {
-    // Send Http request
+    this.postsService.deletePosts().subscribe(
+      (data) => {
+        this.loadedPosts = [];
+      }
+    )
   }
 }
