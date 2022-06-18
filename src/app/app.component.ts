@@ -62,7 +62,8 @@ export class AppComponent implements OnInit {
   forbiddenUsernames = [ 'text', 'user' ];
 
   // http
-  loadedPosts = [];
+  loadedPosts: Post[] = [];
+  isFetching = false;
 
   constructor( private accountService: AccountService,
                private http: HttpClient ) {
@@ -71,6 +72,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
       this.accounts = this.accountService.accounts;
+      this.onFetchPosts()
 
       // reactive form section below
       this.reactiveSignupForm = new FormGroup({
@@ -89,8 +91,6 @@ export class AppComponent implements OnInit {
       this.reactiveSignupForm.get( 'email' ).statusChanges.subscribe(
         ( value ) => console.log( value )
       )
-
-      this.onFetchPosts()
   }
 
   onServerAdded( serverData: { serverName: string, serverContent: string }) {
@@ -253,6 +253,7 @@ export class AppComponent implements OnInit {
 
   onFetchPosts() {
     // Send Http request
+    this.isFetching = true;
     this.http.get<{ [id: string]: Post }>( 'https://ng-complete-guide-d7956-default-rtdb.firebaseio.com/posts.json' )
        .pipe(
           map(( responseData : { [id: string]: Post }) => {
@@ -266,7 +267,9 @@ export class AppComponent implements OnInit {
           })
        )
        .subscribe( response => {
+        this.isFetching = false;
         console.log( response )
+        this.loadedPosts = response
        })
   }
 
