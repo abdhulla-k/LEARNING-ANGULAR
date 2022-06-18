@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { map, Observable } from 'rxjs';
+import { map, Observable, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import { AccountService } from './accounts.service';
@@ -13,7 +13,7 @@ import { PostsService } from './posts.service';
   styleUrls: ['./app.component.css'],
   //providers: [AccountService]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   serverElements = [{ type: 'server', name: 'test', content: 'just a test'}];
   accounts: { name: string, status: string }[] = [];
   @ViewChild('f') signupForm: NgForm; // this is created to get the local reference 'f' from form section
@@ -67,6 +67,7 @@ export class AppComponent implements OnInit {
   isFetching = false;
   @ViewChild( 'postForm' ) postForm: NgForm;
   error = null;
+  private errorSub: Subscription
 
   constructor( private accountService: AccountService,
                private http: HttpClient,
@@ -75,6 +76,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+       // http
       this.accounts = this.accountService.accounts;
       this.isFetching = true
       this.postsService.fetchPosts().subscribe(
@@ -85,6 +87,11 @@ export class AppComponent implements OnInit {
         error => {
           this.error = error;
           console.log(error)
+        }
+      )
+      this.errorSub = this.postsService.error.subscribe(
+        error => {
+          this.error = error;
         }
       )
 
@@ -277,5 +284,9 @@ export class AppComponent implements OnInit {
         this.loadedPosts = [];
       }
     )
+  }
+
+  ngOnDestroy(): void {
+    this.errorSub.unsubscribe()
   }
 }
