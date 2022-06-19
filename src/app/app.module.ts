@@ -31,6 +31,7 @@ import { CanDeactivateGuard } from './learn-routing/servers/edit-server/can-deac
 import { ShortenPipe } from './shorten.pipe';
 import { FilterPipe } from './filter.pipe';
 import { AuthInterceptorService } from './auth-interceptor.service';
+import { LoggintInterceptorService } from './logging-interceptor';
 
 
 
@@ -73,6 +74,11 @@ import { AuthInterceptorService } from './auth-interceptor.service';
       provide: HTTP_INTERCEPTORS, 
       useClass: AuthInterceptorService, 
       multi: true 
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoggintInterceptorService,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]
