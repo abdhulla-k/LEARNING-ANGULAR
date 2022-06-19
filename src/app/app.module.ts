@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -30,6 +30,7 @@ import { AuthService } from './learn-routing/auth.service';
 import { CanDeactivateGuard } from './learn-routing/servers/edit-server/can-deactivate-guard.service';
 import { ShortenPipe } from './shorten.pipe';
 import { FilterPipe } from './filter.pipe';
+import { AuthInterceptorService } from './auth-interceptor.service';
 
 
 
@@ -67,7 +68,12 @@ import { FilterPipe } from './filter.pipe';
     ServersService,
     AuthService,
     AuthGuard,
-    CanDeactivateGuard
+    CanDeactivateGuard,
+    { 
+      provide: HTTP_INTERCEPTORS, 
+      useClass: AuthInterceptorService, 
+      multi: true 
+    }
   ],
   bootstrap: [AppComponent]
 })
