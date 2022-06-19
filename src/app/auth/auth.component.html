@@ -1,5 +1,14 @@
 <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
+
+        <!-- error message -->
+        <div 
+            class="alert alert-danger"
+            *ngIf="error">
+            <p>{{ error }}</p>
+        </div>
+        <!-- /error messae -->
+
         <!-- loading spinner -->
         <div 
             *ngIf="isLoading"
@@ -7,6 +16,7 @@
             <app-loading-spinner></app-loading-spinner>
         </div>
         <!-- /loading spinner -->
+
         <!-- signup or login form -->
         <form
             #authForm="ngForm"
