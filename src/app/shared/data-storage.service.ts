@@ -22,6 +22,12 @@ export class DataStorageService {
 
     fetchRecipes() {
         this.http.get<Recipe[]>('https://ng-course-recipe-book-b691f-default-rtdb.firebaseio.com/recipes.json')
+         .pipe( map( recipes => {
+            return recipes.map( recipe => {
+                // if there are no ingredients for a recipe, add an empty array
+                return { ...recipe, ingredient: recipe.ingredient ? recipe.ingredient : [] }
+            });
+         }))
          .subscribe( recipes => {
             this.recipeService.setRecipes( recipes );
          })
