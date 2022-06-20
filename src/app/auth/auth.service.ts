@@ -50,7 +50,17 @@ export class AuthService {
                 password, 
                 returnSecureToken: true
             }
-        ).pipe( catchError( this.handleError ));
+        ).pipe( catchError( this.handleError ),
+        tap( resData => {
+
+            // pass all authentication data to data storing function
+            this.handleAuthentication(
+                resData.email,
+                resData.localId,
+                resData.idToken,
+                +resData.expiresIn
+            )
+        }));
     }
 
     // handle or store authentication data

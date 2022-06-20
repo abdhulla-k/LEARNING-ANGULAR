@@ -1,42 +1,94 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
+
         <div class="navbar-header">
             <a href="#" class="navbar-brand">Recipie Book</a>
         </div>
 
+        <!-- navigation liks to different pages -->
         <div class="collapse navbar-collapse">
+
+            <!-- left side -->
             <ul class="nav navbar-nav">
                 <!-- <li><a href="#" (click)="onSelect('recipe')">Recipies</a></li>
                 <li><a href="#" (click)="onSelect('shoping-list')">Shoping List</a></li> -->
-                <li routerLinkActive="active"><a routerLink="/recipes">Recipies</a></li>
-                <li routerLinkActive="active"><a routerLink="/shoppig-list">Shoping List</a></li>
-                <li routerLinkActive="active"><a routerLink="/auth">Authenticate</a></li>
+
+                <li routerLinkActive="active">
+                    <a 
+                        routerLink="/recipes"
+                        *ngIf="isAuthenticated">
+                        Recipies
+                    </a>
+                </li>
+
+                <li routerLinkActive="active">
+                    <a routerLink="/shoppig-list">
+                        Shoping List
+                    </a>
+                </li>
+
+                <li routerLinkActive="active">
+                    <a 
+                        routerLink="/auth"
+                        *ngIf="!isAuthenticated">
+                        Authenticate
+                    </a>
+                </li>
             </ul>
+            <!-- /left side -->
+
+            <!-- right side -->
             <ul class="nav navbar-nav navbar-right">
+
+                <!-- logout button -->
+                <li>
+                    <a 
+                        style="cursor: pointer;"
+                        *ngIf="isAuthenticated">
+                        Logout
+                    </a>
+                </li>
+                <!-- logout button -->
+
+                <!-- dropdown manage buttons -->
                 <li 
                     class="dropdown"
-                    appDropdown>
+                    appDropdown
+                    *ngIf="isAuthenticated">
+
                     <a 
                        class="dropdown-toggle" 
                        role="button"
                        >Manage
                        <span class="caret"></span>
                     </a>
+
                     <ul class="dropdown-menu">
-                        <li><a 
-                            style="cursor: pointer;"
-                            (click)="onSaveData()">
-                            Save data
-                        </a></li>
-                        <li><a 
-                            style="cursor: pointer;"
-                            (click)="onFetchData()">
-                            fetching data
-                        </a></li>
+                        <li>
+                            <a 
+                              style="cursor: pointer;"
+                              (click)="onSaveData()">
+                              Save data
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a 
+                              style="cursor: pointer;"
+                              (click)="onFetchData()">
+                              fetching data
+                            </a>
+                        </li>
                     </ul>
                 </li>
+                <!-- /dropeown manage button -->
+                
             </ul>
+            <!-- /right side -->
+
         </div>
+        <!-- /navigation liks to different pages -->
+
     </div>
 
 </nav>
