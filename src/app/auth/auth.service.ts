@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Subject, throwError } from "rxjs";
+import { BehaviorSubject, Subject, throwError } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
 import { User } from "./user.model";
 
@@ -17,7 +17,7 @@ export interface AuthResponseData {
     providedIn: 'root'
 })
 export class AuthService {
-    user = new Subject<User>();
+    user = new BehaviorSubject<User>(null); // behaviour subject is also subject. But this give us the previous data
     constructor( private http: HttpClient ) {}
 
     signUp( email: string, password: string ) {
