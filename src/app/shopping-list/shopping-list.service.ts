@@ -1,8 +1,11 @@
-import { EventEmitter } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 
 import { Incredient } from "../shared/incredient.model";
 
+@Injectable({
+    providedIn: 'root'
+})
 export class ShoppingListService {
     ingredientChanged = new Subject();
     startedEditing = new Subject<number>();
